@@ -1,10 +1,10 @@
 package com.budgetManagement.controller;
 
+import com.budgetManagement.dto.CategoryCreateDto;
 import com.budgetManagement.dto.CategoryDto;
 import com.budgetManagement.service.CategoryService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +21,8 @@ public class CategoryController {
     public List<CategoryDto> getAllCategories(){
         return categoryService.getAllCategories();
     }
+    @PostMapping("/add")
+        public CategoryDto addCategory(@Valid @RequestBody CategoryCreateDto categoryDto){
+            return categoryService.createCategory(categoryDto);
+        }
 }
