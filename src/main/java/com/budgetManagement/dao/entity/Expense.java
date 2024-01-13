@@ -1,10 +1,13 @@
 package com.budgetManagement.dao.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.UUID;
 @Entity
+@Table(name = "expenses")
+@Getter
 public class Expense {
     @Id
     private UUID id;
