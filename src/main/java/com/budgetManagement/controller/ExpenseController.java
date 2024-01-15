@@ -1,10 +1,10 @@
 package com.budgetManagement.controller;
 
+import com.budgetManagement.dto.ExpenseCreateDto;
 import com.budgetManagement.dto.ExpenseDto;
 import com.budgetManagement.service.ExpenseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +20,10 @@ public class ExpenseController {
     @GetMapping("/all")
     public List<ExpenseDto> getAllExpenses(){
     return expenseService.getAllExpenses();
+    }
+
+    @PostMapping("/add")
+    public ExpenseDto addExpense(@Valid @RequestBody ExpenseCreateDto expenseDto){
+        return expenseService.createExpense(expenseDto);
     }
 }

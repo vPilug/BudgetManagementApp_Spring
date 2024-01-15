@@ -1,5 +1,6 @@
 package com.budgetManagement.dao.entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 public class Category {
     @Id
     private UUID id;
+    @NotNull
     @Column(unique = true)
     private String name;
 

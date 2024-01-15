@@ -1,6 +1,7 @@
 package com.budgetManagement.dto;
 
 import com.budgetManagement.dao.entity.Category;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
