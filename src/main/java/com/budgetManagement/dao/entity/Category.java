@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 @Entity
 @Table(name = "categories")
@@ -15,5 +16,7 @@ public class Category {
     @NotNull
     @Column(unique = true)
     private String name;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
+    private List<Expense> expenses;
 
 }

@@ -27,4 +27,7 @@ public class CategoryService {
         categoryRepository.save(category);
         return CategoryConverter.categoryToCategoryDto(category);
     }
+    public void deleteCategory(UUID id){
+        categoryRepository.deleteById(id);
+    }
 }
