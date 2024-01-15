@@ -3,10 +3,12 @@ package com.budgetManagement.controller;
 import com.budgetManagement.dto.ExpenseCreateDto;
 import com.budgetManagement.dto.ExpenseDto;
 import com.budgetManagement.service.ExpenseService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/expenses")
@@ -26,5 +28,9 @@ public class ExpenseController {
     public ExpenseDto addExpense(@Valid @RequestBody ExpenseCreateDto expenseDto){
         return expenseService.createExpense(expenseDto);
     }
-
+    @DeleteMapping("/delete/{id}")
+    @Transactional
+    public void deleteExpense(@PathVariable UUID id){
+        expenseService.deleteExpense(id);
+    }
 }

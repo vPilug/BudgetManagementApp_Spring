@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface CategoryRepository extends CrudRepository<Category,Long> {
     Optional<Category> findByName(String name);
-    Optional<Category> deleteById(UUID id);
+    void deleteById(UUID id);
 
 }

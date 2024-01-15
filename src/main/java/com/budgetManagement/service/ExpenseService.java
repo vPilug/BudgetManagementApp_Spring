@@ -40,5 +40,7 @@ public class ExpenseService {
         expenseRepository.save(expense);
         return ExpenseConverter.expenseToExpenseDto(expense);
     }
-
+    public void deleteExpense(UUID id){
+        expenseRepository.deleteById(id);
+    }
 }

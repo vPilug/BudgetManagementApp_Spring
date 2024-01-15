@@ -35,8 +35,6 @@ public class IncomeService {
         return IncomeConverter.incomeToIncomeDto(income);
     }
     public void deleteIncome(UUID id){
-//        long mostSignificantBits = id.getMostSignificantBits();
-//        incomeRepository.deleteById(mostSignificantBits);
         incomeRepository.deleteById(id);
     }
 }
