@@ -4,6 +4,7 @@ import com.budgetManagement.dao.repository.IncomeRepository;
 import com.budgetManagement.dto.IncomeCreateDto;
 import com.budgetManagement.dto.IncomeDto;
 import com.budgetManagement.dto.converter.IncomeConverter;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,14 @@ public class IncomeService {
     }
     public void deleteIncome(UUID id){
         incomeRepository.deleteById(id);
+    }
+
+    public IncomeDto editIncome(IncomeDto incomeDto){
+        Income foundIncome = incomeRepository.findById(incomeDto.getId());
+        foundIncome.setDate(incomeDto.getDate());
+        foundIncome.setAmount(incomeDto.getAmount());
+        foundIncome.setSource(incomeDto.getSource());
+        incomeRepository.save(foundIncome);
+        return IncomeConverter.incomeToIncomeDto(foundIncome);
     }
 }

@@ -32,4 +32,8 @@ public class IncomeController {
     public void deleteIncome(@PathVariable UUID id){
     incomeService.deleteIncome(id);
     }
+    @PutMapping
+    public IncomeDto editIncome(@Valid @RequestBody IncomeDto incomeDto){
+        return incomeService.editIncome(incomeDto);
+    }
 }
