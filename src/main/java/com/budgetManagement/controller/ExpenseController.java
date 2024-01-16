@@ -33,4 +33,9 @@ public class ExpenseController {
     public void deleteExpense(@PathVariable UUID id){
         expenseService.deleteExpense(id);
     }
+
+    @PutMapping
+    public ExpenseDto editExpense(@Valid @RequestBody ExpenseDto expenseDto){
+        return expenseService.editExpense(expenseDto);
+    }
 }

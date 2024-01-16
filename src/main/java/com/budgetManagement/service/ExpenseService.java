@@ -43,4 +43,13 @@ public class ExpenseService {
     public void deleteExpense(UUID id){
         expenseRepository.deleteById(id);
     }
+    public ExpenseDto editExpense(ExpenseDto expenseDto){
+        Expense foundExpense = expenseRepository.findById(expenseDto.getId());
+        foundExpense.setDate(expenseDto.getDate());
+        foundExpense.setAmount(expenseDto.getAmount());
+        foundExpense.setDescription(expenseDto.getDescription());
+        foundExpense.setCategory(expenseDto.getCategory());
+        expenseRepository.save(foundExpense);
+        return ExpenseConverter.expenseToExpenseDto(foundExpense);
+    }
 }
