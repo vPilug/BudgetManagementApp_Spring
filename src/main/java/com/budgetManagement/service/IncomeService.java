@@ -52,6 +52,6 @@ public class IncomeService {
         List<Income> filteredIncomes = incomeRepository.findByDateBetween(startDate, endDate);
         return filteredIncomes.stream()
                 .map(IncomeConverter::incomeToIncomeDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

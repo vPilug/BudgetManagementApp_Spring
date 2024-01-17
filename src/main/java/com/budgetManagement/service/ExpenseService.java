@@ -1,5 +1,4 @@
 package com.budgetManagement.service;
-
 import com.budgetManagement.dao.entity.Category;
 import com.budgetManagement.dao.entity.Expense;
 import com.budgetManagement.dao.repository.CategoryRepository;
@@ -8,20 +7,17 @@ import com.budgetManagement.dto.ExpenseCreateDto;
 import com.budgetManagement.dto.ExpenseDto;
 import com.budgetManagement.dto.converter.ExpenseConverter;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
 
 @Service
 public class ExpenseService {
     private final ExpenseRepository expenseRepository;
     private final CategoryRepository categoryRepository;
 
-@Autowired
     public ExpenseService(ExpenseRepository expenseRepository, CategoryRepository categoryRepository) {
         this.expenseRepository = expenseRepository;
         this.categoryRepository = categoryRepository;
@@ -60,6 +56,15 @@ public class ExpenseService {
         List<Expense> filteredExpenses = expenseRepository.findByDateBetween(startDate, endDate);
         return filteredExpenses.stream()
                 .map(ExpenseConverter::expenseToExpenseDto)
-                .collect(Collectors.toList());
+                .toList();
     }
+    public List<ExpenseDto> filterExpensesByCategory(String categoryName) {
+        Category category = categoryRepository.findByName(categoryName)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found"));
+        List<Expense> filteredExpenses = expenseRepository.findByCategory(category);
+        return filteredExpenses.stream()
+                .map(ExpenseConverter::expenseToExpenseDto)
+                .toList();
+    }
+
 }
