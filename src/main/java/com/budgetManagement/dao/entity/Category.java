@@ -1,4 +1,5 @@
 package com.budgetManagement.dao.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -17,6 +18,6 @@ public class Category {
     @Column(unique = true)
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
+    @JsonIgnore
     private List<Expense> expenses;
-
 }
