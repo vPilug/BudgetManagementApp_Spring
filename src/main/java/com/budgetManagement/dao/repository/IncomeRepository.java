@@ -4,7 +4,8 @@ import com.budgetManagement.dao.entity.Income;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -12,4 +13,6 @@ import java.util.UUID;
 public interface IncomeRepository extends CrudRepository<Income, Long> {
     void deleteById(UUID id);
     Income findById(UUID id);
+
+    List<Income> findByDateBetween(LocalDate startDate, LocalDate endDate);
 }

@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class IncomeService {
@@ -46,5 +47,11 @@ public class IncomeService {
         foundIncome.setSource(incomeDto.getSource());
         incomeRepository.save(foundIncome);
         return IncomeConverter.incomeToIncomeDto(foundIncome);
+    }
+    public List<IncomeDto> filterIncomesByDate(LocalDate startDate, LocalDate endDate) {
+        List<Income> filteredIncomes = incomeRepository.findByDateBetween(startDate, endDate);
+        return filteredIncomes.stream()
+                .map(IncomeConverter::incomeToIncomeDto)
+                .collect(Collectors.toList());
     }
 }
