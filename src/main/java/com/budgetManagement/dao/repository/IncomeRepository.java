@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Repository
 public interface IncomeRepository extends CrudRepository<Income, Long> {
+    List<Income> findAllByOrderByDateDesc();
     void deleteById(UUID id);
     Income findById(UUID id);
 

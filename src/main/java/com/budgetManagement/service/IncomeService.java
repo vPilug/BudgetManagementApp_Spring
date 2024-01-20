@@ -24,7 +24,7 @@ public class IncomeService {
     }
 
     public List<IncomeDto> getAllIncomes(){
-        return IncomeConverter.incomeListToIncomeDtoList(incomeRepository.findAll());
+        return IncomeConverter.incomeListToIncomeDtoList(incomeRepository.findAllByOrderByDateDesc());
     }
 
     public IncomeDto createIncome (@Valid IncomeCreateDto incomeDto){

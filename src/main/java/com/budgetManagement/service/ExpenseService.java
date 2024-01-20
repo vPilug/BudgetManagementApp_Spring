@@ -24,7 +24,7 @@ public class ExpenseService {
     }
 
     public List<ExpenseDto> getAllExpenses(){
-        return ExpenseConverter.expenseListToExpenseDtoList(expenseRepository.findAll());
+        return ExpenseConverter.expenseListToExpenseDtoList(expenseRepository.findAllByOrderByDateDesc());
     }
 
     public ExpenseDto createExpense(ExpenseCreateDto expenseDto){
