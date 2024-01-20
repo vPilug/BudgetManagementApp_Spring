@@ -40,8 +40,8 @@ public class ExpenseController {
     }
         @GetMapping("/filterByDate")
     public List<ExpenseDto> filterExpensesByDate(
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate){
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate){
         return expenseService.filterExpensesByDate(startDate, endDate);
     }
     @GetMapping("/filterByCategory")

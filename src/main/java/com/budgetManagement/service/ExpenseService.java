@@ -53,6 +53,12 @@ public class ExpenseService {
     }
 
         public List<ExpenseDto> filterExpensesByDate(LocalDate startDate, LocalDate endDate){
+            if(startDate == null){
+                startDate = LocalDate.ofEpochDay(0);
+            }
+            if(endDate == null){
+                endDate = LocalDate.now().plusDays(1);
+            }
         List<Expense> filteredExpenses = expenseRepository.findByDateBetween(startDate, endDate);
         return filteredExpenses.stream()
                 .map(ExpenseConverter::expenseToExpenseDto)
