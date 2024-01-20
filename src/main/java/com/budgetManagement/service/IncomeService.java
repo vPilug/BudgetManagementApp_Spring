@@ -49,6 +49,12 @@ public class IncomeService {
         return IncomeConverter.incomeToIncomeDto(foundIncome);
     }
     public List<IncomeDto> filterIncomesByDate(LocalDate startDate, LocalDate endDate) {
+        if(startDate == null){
+            startDate = LocalDate.ofEpochDay(0);
+        }
+        if(endDate == null){
+            endDate = LocalDate.now().plusDays(1);
+        }
         List<Income> filteredIncomes = incomeRepository.findByDateBetween(startDate, endDate);
         return filteredIncomes.stream()
                 .map(IncomeConverter::incomeToIncomeDto)

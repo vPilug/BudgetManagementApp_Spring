@@ -2,6 +2,7 @@ package com.budgetManagement.controller;
 import com.budgetManagement.dto.IncomeCreateDto;
 import com.budgetManagement.dto.IncomeDto;
 import com.budgetManagement.service.IncomeService;
+import jakarta.annotation.Nullable;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,8 +41,8 @@ public class IncomeController {
     }
     @GetMapping("/filterByDate")
     public List<IncomeDto> filterIncomesByDate(
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate) {
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate) {
         return incomeService.filterIncomesByDate(startDate, endDate);
     }
 }

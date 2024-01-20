@@ -14,6 +14,5 @@ public interface IncomeRepository extends CrudRepository<Income, Long> {
     List<Income> findAllByOrderByDateDesc();
     void deleteById(UUID id);
     Income findById(UUID id);
-
     List<Income> findByDateBetween(LocalDate startDate, LocalDate endDate);
 }
